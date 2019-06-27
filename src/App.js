@@ -9,7 +9,7 @@ function App() {
 
   return (
     <div className="App">
-      <WorldMap />
+      <WorldMap width={960} height={500}/>
     </div>
   );
 }

@@ -1,12 +1,16 @@
 import * as d3 from 'd3';
 import React, { Component } from 'react'
-import worlddata from './world'
+import worlddata from '../data/world'
 
 class WorldMap extends Component {
 
+  constructor(props) {
+    super(props);
+  }
+
    render() {
-     const w = 960
-     const h = 500
+     const w = this.props.width
+     const h = this.props.height
 
       const projection = d3.geoMercator()
       .scale(150)
@@ -19,11 +23,15 @@ class WorldMap extends Component {
          .map((d,i) => <path
          key={'path' + i}
          d={pathGenerator(d)}
+         fill={ `rgba(38,50,56,${ 1 / worlddata.features.length * i})` }
+         stroke="yellow"
+         strokeWidth={ 0.5 }
          className='countries'
          />)
-   return <svg width={960} height={500}>
-   {countries}
-   </svg>
+
+     return <svg width={960} height={500}>
+     {countries}
+     </svg>
    }
 }
 export default WorldMap
